@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
       )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {dreamscapes.map((dscape, i) => (
+        {Array.isArray(dreamscapes) && dreamscapes.map((dscape, i) => (
           <Card key={i} onClick={() => { setCurrentDreamscape(dscape); navigate('/play'); }} className="cursor-pointer">
             <CardHeader>
               <CardTitle>{dscape.title || 'Untitled'}</CardTitle>
