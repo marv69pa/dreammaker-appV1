@@ -39,10 +39,14 @@ export const DreamProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const createDream = (dreamData: Omit<DreamSettings, 'id' | 'createdAt'>) => {
     const newDream: DreamSettings = {
-      ...dreamData,
-      id: uuidv4(),
-      createdAt: new Date()
-    };
+  ...dreamData,
+  id: uuidv4(),
+  createdAt: new Date(),
+  title: dreamData.title || 'Untitled Dreamscape',
+  description: dreamData.visualStyle || 'No description provided.',
+  audioUrl: '/placeholder-audio.mp3', // host this or replace with a valid URL
+  thumbnail: dreamData.customImages?.[0] || '/placeholder-image.jpg' // fallback image
+};
     
     const updatedDreams = [...dreams, newDream];
     setDreams(updatedDreams);
