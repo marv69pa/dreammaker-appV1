@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { useDreamscape } from '@/contexts/DreamContext';
+import { useDream } from '@/contexts/DreamContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle, Moon, Settings, LogOut, Play, Calendar, CreditCard } from 'lucide-react';
@@ -10,7 +10,7 @@ import { PlusCircle, Moon, Settings, LogOut, Play, Calendar, CreditCard } from '
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const { dreamscapes, setCurrentDreamscape } = useDreamscape(); // renamed context
+  const { dreams, setCurrentDream } = useDream(); // renamed context
   const [showSettings, setShowSettings] = useState(false);
 
   const createNewDreamscape = () => navigate('/create');
@@ -36,8 +36,8 @@ const Dashboard: React.FC = () => {
       )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {Array.isArray(dreamscapes) && dreamscapes.map((dscape, i) => (
-          <Card key={i} onClick={() => { setCurrentDreamscape(dscape); navigate('/play'); }} className="cursor-pointer">
+        {Array.isArray(dreams) && dreams.map((dscape, i) => (
+          <Card key={i} onClick={() => { setCurrentDream(dscape); navigate('/play'); }} className="cursor-pointer">
             <CardHeader>
               <CardTitle>{dscape.title || 'Untitled'}</CardTitle>
             </CardHeader>
