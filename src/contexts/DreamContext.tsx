@@ -23,6 +23,7 @@ const defaultDreamContext: DreamContextType = {
 const DreamContext = createContext<DreamContextType>(defaultDreamContext);
 
 export const useDream = () => useContext(DreamContext);
+export { useDream as useDreamscape };
 
 export const DreamProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [dreams, setDreams] = useState<DreamSettings[]>(() => {
