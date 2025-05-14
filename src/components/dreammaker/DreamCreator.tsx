@@ -1,7 +1,7 @@
-import { generateDreamContent } from '@/lib/generateDream';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDream } from '@/contexts/DreamContext';
+import { generateDreamContent } from '@/lib/generateDream';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -22,7 +22,7 @@ const DreamCreator: React.FC = () => {
   const [duration, setDuration] = useState(20); // Default 20 minutes
 
  
-onst handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   const ai = await fetch('/api/generate-dream', {
