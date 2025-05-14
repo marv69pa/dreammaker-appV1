@@ -21,7 +21,7 @@ const DreamCreator: React.FC = () => {
   const [duration, setDuration] = useState(20); // Default 20 minutes
 
  
-onst handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   const ai = await fetch('/api/generate-dream', {
