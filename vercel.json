@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/generate-dream.ts": {
+    "api/*.ts": {
       "runtime": "nodejs18.x"
     }
   }
