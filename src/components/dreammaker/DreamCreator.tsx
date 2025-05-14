@@ -23,13 +23,18 @@ const DreamCreator: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    createDream({
-      title,
-      theme,
-      customImages: images,
-      visualStyle: customPrompt,
-      duration
-    });
+    import { generateDreamContent } from '@/lib/generateDream'; // add this at the top
+
+const ai = await generateDreamContent(customPrompt);
+
+createDream({
+  title: ai.title,
+  description: ai.description,
+  theme,
+  customImages: images,
+  visualStyle: customPrompt,
+  duration
+});
     
     navigate('/dashboard');
   };
