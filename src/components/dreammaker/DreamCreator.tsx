@@ -20,24 +20,24 @@ const DreamCreator: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
   const [duration, setDuration] = useState(20); // Default 20 minutes
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    import { generateDreamContent } from '@/lib/generateDream'; // add this at the top
+  import { generateDreamContent } from '@/lib/generateDream'; // Add this import at the top
 
-const ai = await generateDreamContent(customPrompt);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-createDream({
-  title: ai.title,
-  description: ai.description,
-  theme,
-  customImages: images,
-  visualStyle: customPrompt,
-  duration
-});
-    
-    navigate('/dashboard');
-  };
+  const ai = await generateDreamContent(customPrompt);
+
+  createDream({
+    title: ai.title,
+    description: ai.description,
+    theme,
+    customImages: images,
+    visualStyle: customPrompt,
+    duration
+  });
+
+  navigate('/dashboard');
+};
 
   const handleImageUpload = (imageUrl: string) => {
     setImages([...images, imageUrl]);
