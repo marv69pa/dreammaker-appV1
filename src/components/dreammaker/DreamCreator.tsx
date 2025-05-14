@@ -20,12 +20,15 @@ const DreamCreator: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
   const [duration, setDuration] = useState(20); // Default 20 minutes
 
-  import { generateDreamContent } from '@/lib/generateDream'; // Add this import at the top
-
-const handleSubmit = async (e: React.FormEvent) => {
+ 
+onst handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  const ai = await generateDreamContent(customPrompt);
+  const ai = await fetch('/api/generate-dream', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: customPrompt })
+  }).then(res => res.json());
 
   createDream({
     title: ai.title,
@@ -38,7 +41,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   navigate('/dashboard');
 };
-
   const handleImageUpload = (imageUrl: string) => {
     setImages([...images, imageUrl]);
   };
